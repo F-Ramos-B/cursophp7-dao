@@ -8,9 +8,9 @@ class DBConn extends PDO {
         $this->conn = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0", "sa", "root");
     }
 
-    private function setParams($parameters = array()) {
+    private function setParams($statement, $parameters = array()) {
         foreach ($parameters as $key => $value) {
-            $this->setParam($key, $value);
+            $this->setParam($statement, $key, $value);
         }
     }
 

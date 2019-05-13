@@ -2,8 +2,11 @@
 
 require_once("config.php");
 
-$dbconn = new DBConn();
+$visualizar = new Usuario();
 
-echo json_encode($dbconn->select("SELECT * FROM TB_USUARIOS"));
+$visualizar->loadById(1);
+
+echo $visualizar;
+
 
 ?>
