@@ -55,6 +55,21 @@ class Usuario {
         }
     }
 
+    public static function search($login) {
+        $dbconn = new DBConn();
+        return $dbconn->select("SELECT * FROM TB_USUARIOS WHERE deslogin LIKE :SEARCH", array(":SEARCH" => "%" . $login . "%"));
+    }
+
+    public static function listar() {
+        $dbconn = new DBConn();
+        return $results = $dbconn->select("SELECT * FROM TB_USUARIOS");
+    }
+
+    public static function autenticar($login, $senha) {
+        $dbconn = new DBConn();
+        return $dbconn->select("SELECT * FROM TB_USUARIOS WHERE deslogin = :LOGIN and dessenha = :SENHA", array(":LOGIN" => $login, ":SENHA" => $senha));
+    }
+
     public function __toString() {
         return json_encode(array(
             "idusuario" => $this->getIdusuario(),
