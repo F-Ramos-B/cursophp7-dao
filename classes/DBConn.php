@@ -5,7 +5,7 @@ class DBConn extends PDO {
     private $conn;
 
     public function __construct() {
-        $this->conn = new PDO("sqlsrv:Database=dbphp7;server=localhost\SQLEXPRESS;ConnectionPooling=0", "sa", "root");
+        $this->conn = new PDO("mysql:dbname=dbphp7;host=localhost", "root", "admin");
     }
 
     private function setParams($statement, $parameters = array()) {
@@ -22,7 +22,6 @@ class DBConn extends PDO {
         $stmt = $this->conn->prepare($RawQuery);
 
         $this->setParams($stmt, $params);
-        
         $stmt->execute();
         return $stmt;
     }
