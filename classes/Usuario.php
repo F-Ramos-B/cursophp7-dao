@@ -58,6 +58,10 @@ class Usuario {
     public static function delete($id) {
         $dbconn = new DBConn();
         $dbconn->query("DELETE FROM TB_USUARIOS WHERE idusuario = :ID", array(":ID" => $id));
+        $this->setIdusuario(0);
+        $this->setLogin("");
+        $this->setSenha("");
+        $this->setDtCadastro(new DateTime());
     }
 
     public static function listar() {
